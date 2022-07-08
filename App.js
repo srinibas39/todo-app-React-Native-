@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput, ScrollView } from 'react-native';
 
 
 export default function App() {
@@ -25,13 +25,15 @@ export default function App() {
         <Button title='ADD' onPress={handlePress} />
       </View>
       <View style={styles.todoList}>
-        {
-          todo.map((el, idx) => {
-            return <View key={idx} style={styles.todoBox}>
-              <Text style={styles.todoText}>{el}</Text>
-            </View>
-          })
-        }
+        <ScrollView>
+          {
+            todo.map((el, idx) => {
+              return <View key={idx} style={styles.todoBox}>
+                <Text style={styles.todoText}>{el}</Text>
+              </View>
+            })
+          }
+        </ScrollView>
 
       </View>
     </View>
@@ -67,15 +69,15 @@ const styles = StyleSheet.create({
   todoList: {
     flex: 6,
   },
-  todoBox:{
-    backgroundColor:"#0ea5e9",
-    margin:16,
-    borderRadius:10,
-    padding:16
+  todoBox: {
+    backgroundColor: "#0ea5e9",
+    margin: 16,
+    borderRadius: 10,
+    padding: 16
   },
-  todoText:{
-    color:"#fff",
-    textAlign:"center"
+  todoText: {
+    color: "#fff",
+    textAlign: "center"
   }
 
 });
