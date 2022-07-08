@@ -1,6 +1,7 @@
 
 import { useState } from 'react';
-import { StyleSheet, Text, View, Button, TextInput, ScrollView, FlatList } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
+import { TodoList } from './components/todoList';
 
 
 
@@ -10,32 +11,21 @@ export default function App() {
 
   const handleChange = (enteredText) => {
     setText(enteredText);
-
-
-
   }
   const handlePress = () => {
-    setTodo((ptodo) => [...ptodo, { text: text, id: Math.random.toString()}])
+    setTodo((ptodo) => [...ptodo, { text: text, id: Math.random().toString()}])
     setText("");
-
   }
+
   return (
     <View style={styles.appContainer}>
-      <View style={styles.todoContainer}>
-        <TextInput placeholder="ENTER YOUR TODO HERE" value={text} style={styles.todoInput} onChangeText={handleChange} />
-        <Button title='ADD' onPress={handlePress} />
-      </View>
-      <View style={styles.todoList}>
-        <FlatList
-          data={todo}
-          renderItem={(itemData)=>{
-              return <View style={styles.todoBox}>
-                <Text style={styles.todoText}>{itemData.item.text}</Text>
-              </View>
-          }}
-          keyExtractor={(item,idx)=>idx}
-        />
-      </View>
+      
+        <View style={styles.todoContainer}>
+          <TextInput placeholder="ENTER YOUR TODO HERE" value={text} style={styles.todoInput} onChangeText={handleChange} />
+          <Button title='ADD' onPress={handlePress} />
+        </View>
+    
+      <TodoList todo={todo} setTodo={setTodo} />
     </View>
   );
 }
@@ -66,18 +56,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff"
 
   },
-  todoList: {
-    flex: 6,
-  },
-  todoBox: {
-    backgroundColor: "#0ea5e9",
-    margin: 16,
-    borderRadius: 10,
-    padding: 16
-  },
-  todoText: {
-    color: "#fff",
-    textAlign: "center"
-  }
+
 
 });
