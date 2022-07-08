@@ -9,28 +9,30 @@ export default function App() {
 
   const handleChange = (enteredText) => {
     setText(enteredText);
-   
-   
+
+
 
   }
   const handlePress = () => {
     setTodo((ptodo) => [...ptodo, text])
     setText("");
-  
+
   }
   return (
     <View style={styles.appContainer}>
       <View style={styles.todoContainer}>
-        <TextInput placeholder="ENTER YOUR TODO HERE" value={text}  style={styles.todoInput} onChangeText={handleChange} />
+        <TextInput placeholder="ENTER YOUR TODO HERE" value={text} style={styles.todoInput} onChangeText={handleChange} />
         <Button title='ADD' onPress={handlePress} />
       </View>
       <View style={styles.todoList}>
         {
-          todo.map((el,idx)=>{
-            return <Text key={idx}>{el}</Text>
+          todo.map((el, idx) => {
+            return <View key={idx} style={styles.todoBox}>
+              <Text style={styles.todoText}>{el}</Text>
+            </View>
           })
         }
-        
+
       </View>
     </View>
   );
@@ -48,6 +50,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderBottomWidth: 2,
     borderBottomColor: "#0ea5e9",
+
     padding: 16,
 
   },
@@ -63,6 +66,16 @@ const styles = StyleSheet.create({
   },
   todoList: {
     flex: 6,
+  },
+  todoBox:{
+    backgroundColor:"#0ea5e9",
+    margin:16,
+    borderRadius:10,
+    padding:16
+  },
+  todoText:{
+    color:"#fff",
+    textAlign:"center"
   }
 
 });
