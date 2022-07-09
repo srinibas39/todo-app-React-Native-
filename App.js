@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { StyleSheet, View, Button, TextInput, Modal } from 'react-native';
+import { StyleSheet, View, Button, TextInput, Modal, Image } from 'react-native';
 import { TodoList } from './components/todoList';
 
 
@@ -34,6 +34,7 @@ export default function App() {
       <Button title='OPEN TODO EDITOR' onPress={handleModal} />
       <Modal visible={modalVisible} animationType="slide">
         <View style={styles.todoContainer}>
+          <Image source={require("./assets/images/smile.jpg")} style={styles.image} />
           <TextInput placeholder="ENTER YOUR TODO HERE" value={text} style={styles.todoInput} onChangeText={handleChange} />
           <View style={styles.BtnContainer}>
             <View>
@@ -66,7 +67,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     borderBottomColor: "#0ea5e9",
     padding: 16,
-
   },
   todoInput: {
     borderWidth: 2,
@@ -83,7 +83,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     width: "40%"
-  }
+  },
+  image: {
+    height: 200,
+    width: 200,
+  },
+
 
 
 
