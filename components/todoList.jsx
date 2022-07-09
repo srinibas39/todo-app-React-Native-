@@ -10,11 +10,15 @@ export const TodoList = ({ todo, setTodo }) => {
         data={todo}
         renderItem={(itemData) => {
           return (
-            <Pressable onPress={() => handleDelete(itemData.item.id)}>
-              <View style={styles.todoBox}>
+            <View style={styles.todoBox}>
+              <Pressable
+                android_ripple={{ color: "#1d4ed8" }}
+                onPress={() => handleDelete(itemData.item.id)}
+                style={({pressed})=>{pressed && styles.iosRipple}}
+              >
                 <Text style={styles.todoText}>{itemData.item.text}</Text>
-              </View>
-            </Pressable>
+              </Pressable>
+            </View>
           );
         }}
         keyExtractor={(item, idx) => idx}
@@ -31,10 +35,15 @@ const styles = StyleSheet.create({
     backgroundColor: "#0ea5e9",
     margin: 16,
     borderRadius: 10,
-    padding: 16,
+    height: 48
   },
   todoText: {
     color: "#fff",
     textAlign: "center",
+    height:"100%",
+    padding:10
   },
+  iosRipple:{
+    backgroundColor:"#0ea5e9"
+  }
 });
